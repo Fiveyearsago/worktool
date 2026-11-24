@@ -1,0 +1,66 @@
+{
+  "name": "project-hub",
+  "version": "0.1.0",
+  "description": "个人项目管理客户端",
+  "main": "main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test tests/*.test.cjs",
+    "pack": "npm run build:native && electron-builder --dir",
+    "dist:mac": "npm run build:native && electron-builder --mac zip",
+    "dist:win": "electron-builder --win portable",
+    "setup:desktop": "node node_modules/electron/install.js",
+    "test:logic": "node renderer/logic-test.cjs",
+    "test:desktop": "node tests/desktop.smoke.cjs",
+    "build:native": "node scripts/build-native.cjs",
+    "test:import": "node tests/import.desktop.cjs",
+    "test:ai": "node tests/ai.desktop.cjs"
+  },
+  "devDependencies": {
+    "electron": "^45.3.0",
+    "electron-builder": "^26.0.12",
+    "markdown-it": "15.0.3",
+    "playwright-core": "^1.65.0"
+  },
+  "build": {
+    "appId": "local.worktool.desktop",
+    "productName": "WorkTool",
+    "files": [
+      "main.cjs",
+      "preload.cjs",
+      "core.cjs",
+      "renderer/**/*",
+      "import-service.cjs",
+      "import-parser.cjs",
+      "ai-settings.cjs",
+      "longcat-client.cjs",
+      "ai-image.cjs",
+      "knowledge-config.cjs",
+      "knowledge-repository.cjs",
+      "bastion-service.cjs",
+      "bastion-portal.cjs",
+      "bastion-auth.cjs",
+      "remote-desktop.cjs",
+      "document-links.cjs",
+      "app-icons.cjs"
+    ],
+    "mac": {
+      "target": "zip",
+      "extraResources": [
+        {
+          "from": "native/worktool-extract",
+          "to": "native/worktool-extract"
+        },
+        {
+          "from": "native/worktool-connect",
+          "to": "native/worktool-connect"
+        }
+      ],
+      "identity": "-"
+    },
+    "win": {
+      "target": "portable"
+    }
+  },
+  "author": "WorkTool"
+}

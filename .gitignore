@@ -1,0 +1,13 @@
+node_modules/
+dist/
+*.log
+.backups/
+.DS_Store
+.incoming/
+.preview/
+.cache/
+.safety-backups/
+/HANDOFF_LOCAL_CODEX_*.md
+/VALIDATION.md
+/native/worktool-extract
+/native/worktool-connect
